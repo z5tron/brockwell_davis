@@ -1,0 +1,391 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<HTML>
+<HEAD>
+<TITLE>Brockwell & Davis Data Files</TITLE>
+<META NAME="description" CONTENT="List of files">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+</HEAD>
+
+<A NAME="Top"></A>
+<BODY LANG="EN" >
+<BODY BGCOLOR="#FEFFDE" LINK="BLUE" LANG="EN" >
+<A NAME="Top"></A>
+
+<A HREF="http://www.umn.edu/tc/"
+TITLE="University of Minnesota Twin Cities main page">
+<IMG SRC="http://www.stat.umn.edu/wdmk.gif"
+ALT="University of Minnesota" WIDTH=97 HEIGHT=30 BORDER=0>
+</A>
+<BR>
+<A HREF="../../../robots.txt"
+TITLE="Statistics Home Page">
+<IMG SRC="http://www.stat.umn.edu/fsbar.gif" ALT="School of Statistics"
+WIDTH=495 HEIGHT=22
+ALT="School of Statistics">
+</A>
+
+<DIV ALIGN=CENTER><P ALIGN=CENTER>
+<A NAME="Top"></A>
+<H2 ALIGN="center">
+               Data files edited from those distributed with<BR>
+              Introduction to Time Series and Forecasting<BR>
+                by Peter J. Brockwell and Richard A. Davis,<BR>
+                            Springer 1996.
+</H2>
+
+<DIV ALIGN=LEFT><P ALIGN=LEFT>
+
+<A NAME="Contents"></A>
+<STRONG>Contents</STRONG>
+<UL>
+<LI> <A HREF="BDFiles.html#FileInfo">Information about files</A>
+<LI> <A HREF="BDFiles.html#FileList">List of files</A>
+</UL>
+
+<A HREF="http://www.stat.umn.edu/~kb/classes/5932/index.html">
+Statistics 5932</A> Fall 2000 Web Page
+<A HREF="http://users.stat.umn.edu/~kb/classes/5932/FileInfo"></A>
+<H3 ALIGN="center">
+                          Information About Files
+</H3>
+
+<P>
+
+The files on the floppy that comes with Introduction to Time Series and
+Forecasting by Peter J. Brockwell and Richard A. Davis (Springer 1996)
+are plain text files designed to work with the program ITSM on the same
+floppy.  Although many of them can be read "as is" by MacAnova using
+<TT>vecread()</TT> or <TT>readcols</TT>, quite a number cannot because of
+descriptive information that is on the same lines as the data.  For this
+reason, I have created additional data files that can be used more easily
+with MacAnova and can easily be edited to work with almost any statistics
+program that can read text files.  Authorized individuals can download them
+<!---
+<A HREF="#FileList">through this page</A>.
+--->
+through a confidential URL distributed in class.
+<P>
+
+On the Statistics work station network, these files are accessible in
+directory <TT>~kb/publicdata/BDFiles</TT>.  They not in the public ftp
+directory.  <P>
+
+1.  For each file on the floppy with name of the form <TT>foo.dat</TT> (for
+example, <TT>airpass.dat</TT>), I have created a file of the form
+<TT>foo.txt</TT> (for example, <TT>airpass.txt</TT>).  This has the data
+but with a header consisting of descriptive lines starting with "#".  For
+example, the first few lines of <TT>airpass.txt</TT> are
+<PRE>
+      # Data from file airpass.dat distributed with Introduction to
+      # Time Series and Forecasting by Peter J. Brockwell and
+      # Richard A. Davis, Springer 1996
+      # (C) 1996 Springer-Verlag New York, Inc.
+      # Monthly totals of international airline passengers
+      # from January 1949 to December 1960 (same as Series G,
+      # Box & Jenkins, P. 531)  N = 144
+       112
+       118
+       132
+       . . .
+</PRE>
+<P>
+The following files have a single variable:
+<PRE>
+        airpass.txt  cdid.txt     lake.txt     signal.txt
+        apph.txt     cdin.txt     lead.txt     sres.txt
+        appi.txt     chaos.txt    lres.txt     strikes.txt
+        appj.txt     deaths.txt   oshorts.txt  sunspots.txt
+        appk.txt     dowj.txt     respc.txt
+        arch.txt     ex611.txt    sales.txt
+</PRE>
+<P>
+The following files have two variables in two columns:
+<PRE>
+        appjk2.txt   djaopc2.txt  goals.txt    lynx.txt
+        djao2.txt    djaopcf.txt  ls2.txt
+</PRE>
+<P>
+In a few cases I have created three variable files in three columns by
+adding columns containing the year (always column 1) and quarter or month
+(column 2) with the series itself in column 3.  These files are
+<P>
+<PRE>
+        austres.txt  deaths.txt   gnfp.txt     wine.txt
+        beer.txt     elec.txt     imports.txt
+        chocs.txt    finserv.txt  polio.txt
+</PRE>
+<P>
+You can read a single variable file like <TT>apph.txt</TT> by
+<P>
+<PRE>
+  Cmd> <EM>y <- vecread("apph.txt", skip:"#") # or readcols("apph.txt",y)</EM>
+</PRE>
+<P>
+As usual, on Windows, Macintosh or Motif, you can use <TT>""</TT> as the
+file name.
+<P>
+You can read a file with two variables into variables <TT>x1</TT> and <TT>x2</TT> by, say,
+<P>
+<PRE>
+  Cmd> <EM>readcols("djao2.txt", x1, x2, skip:"#")</EM>
+</PRE>
+<P>
+You can read a file with year, month and data as, for example
+<P>
+<PRE>
+  Cmd> <EM>readcols("beer.txt",year,month,beer,skip:"#")</EM>
+</PRE>
+<P>
+These files ought to be readable by Minitab and by any program that
+ignores lines that start with "#".  To read the data in other programs,
+including ITSM, that can read data from text files, you will need to use
+an editor or word processor to delete the lines starting with "#".
+<P>
+2.  File <A HREF="http://users.stat.umn.edu/~kb/classes/5932/BDData.txt">data/BDData.txt</A> (the link currently doesn't
+work; use the URL distributed in class) contains the data from all the
+files in the form of data sets readable by <TT>matread()</TT>.  The data
+set names just omit the "<TT>.dat</TT>" of the files on the diskette or
+the "<TT>.txt</TT>" of the new files.
+<P>
+For example, you can read the data originally in <TT>djao2.dat</TT> (and
+also in <TT>djao2.txt</TT>) by
+<P>
+<PRE>
+  Cmd> <EM>djao2 <- matread("BDData.txt","djao2")</EM>
+</PRE>
+<P>
+You can get a list of all the data sets in the file by
+<P>
+<PRE>
+  Cmd> <EM>matread("BDData.txt","info")</EM>
+</PRE>
+<P>
+<A HREF="BDFiles.html#Top">Back to top</A>
+
+<A NAME="FileList"></A>
+<H3 ALIGN="center">
+List of Data files<br>
+(Restricted Access, currently not working; use URL distributed in class)
+</H3>
+<A HREF="data/BDData.txt">BDData.txt</A> All data sets in
+      <TT>matread()</TT> format (Reminder: This link is broken; use,
+	  URL/BDData.txt, where URL was given in class)<P> 
+	  
+Files each containing a single data set in a format readable by
+<TT>vecread()</TT> and <TT>readcols</TT> (Reminder: these links are
+broken; use, for example, URL/airpass.txt, where URL was given in class)<P>
+<TABLE ALIGN="center" BORDER CELLSPACING="2" CELLPADDING="2" BGCOLOR="#EEFFAA">
+
+<TR ALIGN="center">
+<TH>Data File</TH> <TH>From which B&D file</TH> <TH>Variables</TH>
+
+<TR ALIGN="left">
+ <TH> <A HREF="data/airpass.txt"><TT>airpass.txt</TT></A></TH> 
+ <TH ALIGN="center" > <TT>airpass.dat</TT> </TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left">
+ <TH> <A HREF="data/apph.txt"><TT>apph.txt</TT></A></TH> 
+ <TH ALIGN="center"> <TT>apph.dat</TT></TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left">
+ <TH> <A HREF="data/appi.txt"><TT>appi.txt</TT></A></TH> 
+ <TH ALIGN="center"> <TT>appi.dat</TT></TH>
+ <TH ALIGN="center">(1 variable)</TH>
+ 
+<TR ALIGN="left">
+ <TH> <A HREF="data/appj.txt"><TT>appj.txt</TT></A></TH> 
+ <TH ALIGN="center"> <TT>appj.dat</TT></TH>
+ <TH ALIGN="center">(1 variable)</TH>
+ 
+<TR ALIGN="left">
+ <TH> <A HREF="data/appjk2.txt"><TT>appjk2.txt</TT></A></TH> 
+ <TH ALIGN="center"> <TT>appjk2.dat</TT> </TH>
+ <TH ALIGN="center">(2 variables)</TH>
+
+<TR ALIGN="left">
+ <TH> <A HREF="data/appk.txt"><TT>appk.txt</TT></A></TH> 
+ <TH ALIGN="center"> <TT>appk.dat</TT> </TH>
+ <TH ALIGN="center">(1 variable)</TH>
+ 
+<TR ALIGN="left">
+ <TH> <A HREF="data/arch.txt"><TT>arch.txt</TT></A></TH> 
+ <TH ALIGN="center"> <TT>arch.dat</TT></TH>
+ <TH ALIGN="center">(1 variable)</TH>
+ 
+<TR ALIGN="left">
+ <TH> <A HREF="data/austres.txt"><TT>austres.txt</TT></A></TH> 
+ <TH ALIGN="center"> <TT>austres.dat</TT> </TH>
+ <TH ALIGN="center">(year, quarter, value)</TH>
+
+<TR ALIGN="left">
+ <TH> <A HREF="data/beer.txt"><TT>beer.txt</TT></A></TH> 
+ <TH ALIGN="center"> <TT>beer.dat</TT></TH>
+  <TH ALIGN="center">(year, month, value)</TH>
+
+<TR ALIGN="left">
+ <TH> <A HREF="data/cdid.txt"><TT>cdid.txt</TT></A></TH> 
+ <TH ALIGN="center"> <TT>cdid.dat</TT></TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left">
+ <TH> <A HREF="data/cdin.txt"><TT>cdin.txt</TT></A></TH> 
+ <TH ALIGN="center"> <TT>cdin.dat</TT></TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left">
+ <TH> <A HREF="data/chaos.txt"><TT>chaos.txt</TT></A></TH> 
+ <TH ALIGN="center"> <TT>chaos.dat</TT> </TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left">
+ <TH> <A HREF="data/chocs.txt"><TT>chocs.txt</TT></A></TH> 
+ <TH ALIGN="center"> <TT>chocs.dat</TT> </TH>
+ <TH ALIGN="center">(year, month, value)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/deaths.txt"><TT>deaths.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>deaths.dat</TT></TH>
+ <TH ALIGN="center"> (month, year, value)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/djao2.txt"><TT>djao2.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>djao2.dat</TT></TH>
+ <TH ALIGN="center"> (2 variables)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/djaopc2.txt"><TT>djaopc2.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>djaopc2.dat</TT></TH>
+ <TH ALIGN="center"> (2 variables)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/djaopcf.txt"><TT>djaopcf.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>djaopcf.dat</TT> </TH>
+ <TH ALIGN="center">(2 variables)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/dowj.txt"><TT>dowj.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>dowj.dat</TT></TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/elec.txt"><TT>elec.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>elec.dat</TT> </TH>
+ <TH ALIGN="center">(month, year, value)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/ex611.txt"><TT>ex611.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>ex611.dat</TT> </TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/finserv.txt"><TT>finserv.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>finserv.dat</TT> </TH>
+ <TH ALIGN="center">(quarter, year, value)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/gnfp.txt"><TT>gnfp.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>gnfp.dat</TT></TH>
+ <TH ALIGN="center">(quarter, year, value)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/goals.txt"><TT>goals.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>goals.dat</TT> </TH>
+ <TH ALIGN="center">(2 variables)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/imports.txt"><TT>imports.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>imports.dat</TT> </TH>
+ <TH ALIGN="center">(year, quarter, value)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/lake.txt"><TT>lake.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>lake.dat</TT></TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/lead.txt"><TT>lead.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>lead.dat</TT></TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/lres.txt"><TT>lres.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>lres.dat</TT></TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/ls2.txt"><TT>ls2.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>ls2.dat</TT></TH>
+ <TH ALIGN="center">(two variables)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/lynx.txt"><TT>lynx.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>lynx.dat</TT></TH>
+ <TH ALIGN="center">(2 variables)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/oshorts.txt"><TT>oshorts.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>oshorts.dat</TT> </TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/polio.txt"><TT>polio.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>polio.dat</TT> </TH>
+ <TH ALIGN="center">(year, quarter, value)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/respc.txt"><TT>respc.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>respc.dat</TT> </TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/sales.txt"><TT>sales.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>sales.dat</TT> </TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/signal.txt"><TT>signal.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>signal.dat</TT> </TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/sres.txt"><TT>sres.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>sres.dat</TT></TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/strikes.txt"><TT>strikes.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>strikes.dat</TT> </TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/sunspots.txt"><TT>sunspots.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>sunspots.dat</TT> </TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/uspop.txt"><TT>uspop.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>uspop.dat</TT> </TH>
+ <TH ALIGN="center">(1 variable)</TH>
+
+<TR ALIGN="left"> 
+ <TH><A HREF="data/wine.txt"><TT>wine.txt</TT></A></TH>
+ <TH ALIGN="center"> <TT>wine.dat</TT></TH>
+ <TH ALIGN="center">(year, quarter, value)</TH>
+
+</TABLE>
+</UL>
+<A HREF="BDFiles.html#Top">Back to top</A>
+<P>
+</DIV><BR> <HR>
+
+<P><ADDRESS>
+<I>C Bingham <BR>
+Updated Mon Sep 18 13:06:42 CDT 2000
+
+</I>
+</ADDRESS>
+</BODY>
+</HTML>
